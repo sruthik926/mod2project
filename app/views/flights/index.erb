@@ -1,0 +1,39 @@
+<h1>#CITY to #CITY</h1>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<%= button_to "Search for flights", new_search_path, :method => :get %>
+
+<h4>Your saved flight: </h4>
+
+<ol>
+  <% @flights_in_cart.each do |flight| %>
+    <li><%= flight.name %></li>
+  <% end %>
+</ol>
+
+
+<hr>
+
+<h3>Search for flights:</h3>
+  <%= form_tag(flights_path, method: :get) do %>
+    <%= text_field_tag(:search, params[:search], placeholder: "Origin") %>
+    <%= text_field_tag(:search, params[:search], placeholder: "Destination") %>
+    <%= date_field_tag(:search, params[:search], placeholder: "Departure Date") %>
+    <%= date_field_tag(:search, params[:search], placeholder: "Return Date") %>
+    <%= submit_tag ("Let's go!") %>
+  <% end %>
+
+<% @flights.map do |flight| %>
+  <ul>
+    <li>
+      <label>Flight Name: </label>
+      <%= link_to flight.name, flight_path(flight) %><br>
+      <label>Airline Name:</label>
+      <%= flight.airline %>
+      <%= button_to "Reserve this flight", add_flight_to_cart_path,{method: :patch, params:{id: flight.id, name: flight.name, airline: flight.airline}} %>
+    </li>
+  </ul>
+<% end  %>

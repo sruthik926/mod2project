@@ -1,0 +1,18 @@
+<h1>Search for flights</h1>
+
+<%= form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :origin %><br />
+    <%= f.text_field :origin %>
+  </div>
+  <div class="field">
+    <%= f.label :destination %><br />
+    <%= f.text_field :destination %>
+  </div>
+  <div class="field">
+    <%= f.label :departure_date, "Date Range" %><br />
+    <%= f.text_field :departure_date %> -
+    <%= f.text_field :return_date %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>

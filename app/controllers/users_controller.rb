@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     render :welcome
   end
 
+  # def login
+  #   @user = User.find(params[:id])
+  #   render :login
+  # end
+
   def new
    @user = User.new
    render :new
@@ -22,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:user][:email])
     render :login_display
   end
-
+  
   def create
    @user = User.create(user_params)
    if @user.valid?
@@ -57,7 +62,5 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   end
-
-
 
 end
