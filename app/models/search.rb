@@ -1,4 +1,6 @@
 class Search < ApplicationRecord
+  validates :origin, :destination, :departure_date, :return_date, presence: true
+
   def flights
     @flights ||= find_flights
   end
@@ -7,10 +9,10 @@ private
 
   def find_flights
     flights = Flight.order(:id)
-    flights = flights.where("state like ?", "%#{origin}%") if origin.present?
-    flights = flights.where("destination_state like ?", "%#{destination}%") if destination.present?
-    flights = flights.where("date like ?", departure_date.to_s) if departure_date.present?
-    flights = flights.where("return_date like ?", return_date.to_s) if return_date.present?
+    flights = flights.where("state like ?", "%#{origin}%")
+    flights = flights.where("destination_state like ?", "%#{destination}%")
+    flights = flights.where("date like ?", departure_date.strftime("%Y-%m-%d"))
+    flights = flights.where("return_date like ?", return_date.strftime("%Y-%m-%d"))
     flights
   end
 
