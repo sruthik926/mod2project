@@ -1,8 +1,8 @@
 <h1>Search for flights</h1>
 
 <div class="error">
-<% if @errors %>
-  <% @errors.each do |err| %>
+<% if flash[:error] %>
+  <% flash[:error].each do |err| %>
     <%= err %>
   <% end %>
 <% end  %>
@@ -11,11 +11,14 @@
 <%= form_for @search do |f| %>
   <div class="field">
     <%= f.label :origin %><br />
-    <%= f.collection_select(:origin, @flights, :id, :state) %>
+    <%= f.text_field :origin %>
+
+    <%# <%= f.collection_select(:origin, @flights, :id, :state.to_s) %> %>
   </div>
   <div class="field">
     <%= f.label :destination %><br />
-    <%= f.collection_select(:destination_state, @flights, :id, :state) %>
+    <%= f.text_field :destination %>
+    <%# <%= f.collection_select(:destination, @returnflights, :id, :destination_state.to_s) %> %>
   </div>
   <div class="field">
     <%= f.label :departure_date, "Date Range" %><br />
