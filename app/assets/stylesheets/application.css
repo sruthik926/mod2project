@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+h1 {
+  color: green
+}
+
+.header {
+  height: 400px;
+  background-image: url('/assets/Orbit.jpg');
+  text-align: center;
+  background-size: cover;
+
+
+}
+body {
+  text-align: center;
+  background-color: #d8dddf;
+
+}
+button {
+  color :blue
+}
+
+div.text label {
+ text-align: right;
+}
+div.text input {
+ text-align: left;
+}
