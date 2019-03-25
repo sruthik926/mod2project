@@ -1,1 +1,14 @@
-login page
+
+<h1> USER LOGIN </h1>
+
+<%= form_tag do %>
+<label> UserName (email):</label>
+<%= text_field_tag :'user[email]' %>
+
+ <label>Password:</label>
+ <%= text_field_tag :'user[password]' %>
+
+ <%= submit_tag "Login" %>
+ <% end %>
+
+

@@ -1,7 +1,40 @@
-<%= form_for @user do |f| %>
-<%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-  <%= f.label:last_name %>
-  <%= f.text_field :last_name %>
 
+
+<% if flash[:error] %>
+    <%flash[:error].each do |err| %>
+    <li> <%= err %> </li>
+    <% end %>
+<% end %>
+
+
+<%= form_for @user do |u| %>
+
+  <%= u.label 'First Name' %>
+  <%= u.text_field :first_name %> <br>
+
+  <%= u.label 'Last Name' %>
+  <%= u.text_field :last_name %> <br>
+
+  <%= u.label 'Age' %>
+  <%= u.number_field :age %><br>
+
+  <%= u.label 'Email' %>
+  <%= u.text_field :email %><br>
+
+  <%= u.label 'Address 1' %>
+  <%= u.text_field :address_1 %><br>
+
+  <%= u.label 'City' %>
+  <%= u.text_field :city %><br>
+
+  <%= u.label 'State' %>
+  <%= u.text_field :state %><br>
+
+  <%= u.label 'ZipCode' %>
+  <%= u.text_field :zipcode %><br>
+
+  <%= u.label 'Phone' %>
+  <%= u.text_field :phone %><br>
+
+  <%= u.submit  %>
 <% end %>
