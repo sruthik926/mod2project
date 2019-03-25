@@ -2,21 +2,24 @@ class SearchesController < ApplicationController
   def new
     @search = Search.new
     @flights = Flight.select('DISTINCT state')
-    @returnflight = Flight.select('DISTINCT return_state')
+    @returnflights = Flight.select('DISTINCT destination_state')
     render :new
   end
 
   def create
     @search = Search.create(search_params)
+
     if @search.valid?
+
       redirect_to search_path(@search.id)
     else
-      @errors = @search.errors.full_messages
-      render :new
+      flash[:error] = @search.errors.full_messages
+      redirect_to new_search_path
     end
   end
 
   def show
+
     @search = Search.find(params[:id])
     render :show
   end

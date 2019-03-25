@@ -3,7 +3,6 @@ class FlightsController < ApplicationController
 
   def index
     @flights = Flight.all
-    @flight = Flight.search(params[:search])
     render :index
   end
 

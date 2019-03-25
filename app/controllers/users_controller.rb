@@ -20,14 +20,15 @@ class UsersController < ApplicationController
   end
 
   def login_display
-   render :login
+    @user = User.find_by(email: session[:email])
+   render :login_display
   end
 
-  def login
-    @user = User.find_by(email: params[:user][:email])
-    render :login_display
-  end
-  
+  # def login
+  #   @user = User.find_by(email: params[:user][:email])
+  #   render :login_display
+  # end
+
   def create
    @user = User.create(user_params)
    if @user.valid?
@@ -51,10 +52,17 @@ class UsersController < ApplicationController
    redirect_to user_path(@user.id)
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = 'You deleted ur account. YEET!'
+    redirect_to new_user_path
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :age, :email, :address_1, :city, :state, :zipcode, :phone)
+    params.require(:user).permit(:first_name, :last_name, :age, :email, :address_1, :city, :state, :zipcode, :phone, :password, :password_confirmation)
 
   end
 
