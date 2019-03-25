@@ -1,0 +1,11 @@
+<h1>Details for <%= @flight.name %></h1>
+
+<p>Flight Name: <%= @flight.name %></p>
+
+<p>Airline Name: <%= @flight.date %></p>
+
+<p>Date <%= @flight.date %></p>
+
+<p>Price: $<%= @flight.price %></p>
+
+<%= button_to 'Back to All Flights', flights_path, :method => :get %>

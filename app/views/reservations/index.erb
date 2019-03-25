@@ -1,0 +1,21 @@
+<ol>
+  <% @flights_in_cart.each do |flight| %>
+    <li>
+      <label>Flight Name:</label>
+      <%= flight.name %><br>
+      <label>Airline:</label>
+      <%= flight.airline %><br>
+      <label>Origin:</label>
+      <%= flight.state %><br>
+      <label>Destination:</label>
+      <%= flight.destination_state %><br>
+      <label>Date:</label>
+      <%= flight.date %> -
+      <label>Return date:</label>
+      <%= flight.return_date %><br>
+      <label>Price: $</label>
+      <%= flight.price %>
+    </li>
+    <hr>
+  <% end %>
+</ol>

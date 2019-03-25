@@ -1,0 +1,22 @@
+<h1>Search Results</h1>
+
+<% @search.flights.each do |flight| %>
+
+<ul>
+<li><label>Flight Name:</label>
+<%= flight.name %><br>
+<label>Airline:</label>
+<%= flight.airline %><br>
+<label>Departure Date:</label>
+<%= flight.date %><br>
+<label>Return Date:</label>
+<%= flight.return_date %><br>
+<label>Origin:</label>
+<%= flight.state %> - <label>Destination:</label>
+<%= flight.destination_state %><br>
+<label>Price:</label>
+<%= flight.price %></li>
+</ul>
+<%= button_to "Reserve this flight", add_flight_to_cart_path,{method: :patch, params:{id: flight.id, name: flight.name, airline: flight.airline, date: flight.date, return_date: flight.return_date, state: flight.state, destination_state: flight.destination_state, price: flight.price}} %>
+<hr>
+<% end %>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   before_action :find_user, only: [:show]
+   before_action :find_user, only: [:show, :login, :edit, :update]
   # def index
   #
   #  render :index
@@ -9,14 +9,14 @@ class UsersController < ApplicationController
     render :welcome
   end
 
+  # def login
+  #   @user = User.find(params[:id])
+  #   render :login
+  # end
+
   def new
    @user = User.new
    render :new
-  end
-
-  def login
-    @user = User.find_by(email: params[:email])
-   render :login
   end
 
   def create
@@ -46,9 +46,5 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   end
-
-
-
-
 
 end
