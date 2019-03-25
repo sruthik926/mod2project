@@ -1,7 +1,8 @@
-<h1>Search Results</h1>
+<% @search.flights.each do |flight| %>
+<h1>Flights for <%= flight.state %> to <%= flight.destination_state %></h1>
+<% end %>
 
 <% @search.flights.each do |flight| %>
-
 <ul>
 <li><label>Flight Name:</label>
 <%= flight.name %><br>
