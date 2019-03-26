@@ -1,0 +1,4 @@
+<%= form_for @review  do |f| %>
+  <%= f.collection_select(:reservation_id, Reservation.all) %>
+
+<% end %>

@@ -1,12 +1,11 @@
 class SessionsController < ApplicationController
-  # skip_before_action :authorized, only: [:new, :create]
+  skip_before_action :authorized, only: [:new, :create]
 
   def new
     render :new
   end
 
-  def create #handles the POST request to /login
-    # find out if we have a user with this username
+  def create
 
     @user = User.find_by(email: params[:email])
 
@@ -26,9 +25,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
+    session.delete(:email)
     # session[:user_id] = nil
-    flash[:notice] = "You've logged out. Come back again!"
+    flash[:notice] = "You have been logged out. Come back again!"
     redirect_to login_path
   end
 end

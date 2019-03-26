@@ -1,0 +1,37 @@
+<h1>Search for flights</h1>
+
+<div class="error">
+<% if flash[:error] %>
+  <% flash[:error].each do |err| %>
+    <%= err %>
+  <% end %>
+<% end  %>
+</div>
+
+<%= form_for @new_flight, url: flights_path, method: :get do |f| %>
+  <div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+
+  <div class="field">
+  <%= f.label :airline %><br />
+  <%= f.text_field :airline %>
+
+  <div class="field">
+    <%= f.label :origin %><br />
+    <%= f.text_field :state %>
+
+    <%# <%= f.collection_select(:origin, @flights, :id, :state.to_s) %>
+  </div>
+  <div class="field">
+    <%= f.label :destination %><br />
+    <%= f.text_field :destination_state %>
+    <%# <%= f.collection_select(:destination, @returnflights, :id, :destination_state.to_s) %>
+  </div>
+  <div class="field">
+    <%= f.label :departure_date, "Date Range" %><br />
+    <%= f.date_field :date %> -
+    <%= f.date_field :return_date %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>

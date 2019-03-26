@@ -1,21 +1,20 @@
-<ol>
-  <% @flights_in_cart.each do |flight| %>
-    <li>
-      <label>Flight Name:</label>
-      <%= flight.name %><br>
-      <label>Airline:</label>
-      <%= flight.airline %><br>
-      <label>Origin:</label>
-      <%= flight.state %><br>
-      <label>Destination:</label>
-      <%= flight.destination_state %><br>
-      <label>Date:</label>
-      <%= flight.date %> -
-      <label>Return date:</label>
-      <%= flight.return_date %><br>
-      <label>Price: $</label>
-      <%= flight.price %>
-    </li>
-    <hr>
-  <% end %>
-</ol>
+
+<h1>Your reservations:</h1>
+
+<% @reservations.each do |res| %>
+<label>Flight Name:</label>
+<%= res.flight.name %><br>
+<label>Airline Name:</label>
+<%= res.flight.airline  %><br>
+<label>Origin:</label>
+<%= res.flight.state %><br>
+<label>Destination:</label>
+<%= res.flight.destination_state %><br>
+<label>Departure Date:</label>
+<%= res.flight.date %><br>
+<label>Return Date:</label>
+<%= res.flight.return_date %>
+<hr>
+<% end %>
+
+<%= button_to "Back to Main Menu", user_path(current_user.id), :method => :get %>

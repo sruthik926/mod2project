@@ -1,19 +1,19 @@
 class FlightsController < ApplicationController
-  before_action :find_the_flights, only: :index
 
   def index
-    @flights = Flight.all
+
+    @flights = Flight.find_flights(params[:flight][:state], params[:flight][:destination_state], params[:flight][:date],params[:flight][:return_date])
     render :index
+  end
+
+  def new_search
+    @new_flight= Flight.new
+    render :new
   end
 
   def show
     @flight = Flight.find(params[:id])
     render :show
-  end
-
-  private
-  def flights_params
-    params.require(:flight).permit(:search)
   end
 
 end

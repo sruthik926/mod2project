@@ -1,18 +1,17 @@
 class ReservationsController < ApplicationController
-before_action :find_the_flights, only: :index
 
   def index
-
+    @reservations = current_user.reservations
   end
 
   def create
-
+    @reservation = Reservation.create(flight_id: params[:flight_id], user_id: current_user.id)
+      if @reservation.valid?
+        redirect_to flight_path(@reservation.flight_id)
+      else
+        flash[:error] = @reservation.errors.full_messages
+        redirect_to new_search_path
+      end
   end
 
-  def update
-    flight = Flight.find(params[:id])
-    flash[:notice] = "#{params[:name]} has been saved."
-    add_flight_to_cart(params[:id])
-    redirect_to reservation_path(flight)
-  end
 end

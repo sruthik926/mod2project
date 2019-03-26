@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
-  resources :reservations, only:[:index, :show]
+  resources :reservations, only: :index
   resources :reviews, only:[:index, :new, :create, :show, :edit, :update]
-  resources :flights, only: [:index, :show]
+  get '/flights/search', to: "flights#new_search", as: "new_search"
+  resources :flights, only: [:index,:show] do
+    resources :reservations, only:[:create, :show]
+    end
   resources :users, only: [:new, :create, :show, :edit, :update, :delete]
-  resources :searches, only: [:show, :new, :create]
+  # resources :searches, only: [:show, :new, :create]
 
   get '/', to: "users#welcome", as: "welcome"
 
   get '/login/display', to: "users#login_display", as: "login_display"
 
 
-  patch '/add_to_cart', to:"reservations#update", as: :add_flight_to_cart
+  patch '/add_to_cart', to:"flights#update", as: :add_flight
 
   get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
