@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
+  skip_before_action :authorized, only: [:welcome, :new, :create]
 
   def welcome
     render :welcome
@@ -17,12 +18,17 @@ class UsersController < ApplicationController
      session[:email] = @user.email
      redirect_to @user
    else
-     flash[:error] = @user.errors.full_messages
-     redirect_to new_user_path
+     @error = @user.errors.full_messages
+     render :new
    end
   end
 
   def show
+    all_reviews = Review.all
+    @my_reviews = all_reviews.select do |review|
+      review.reservation.user.id == current_user.id
+    end
+
    render :show
   end
 

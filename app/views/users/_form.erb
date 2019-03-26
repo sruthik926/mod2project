@@ -1,7 +1,7 @@
 
 
-<% if flash[:error] %>
-    <%flash[:error].each do |err| %>
+<% if @error %>
+    <%@error.each do |err| %>
     <li> <%= err %> </li>
     <% end %>
 <% end %>
@@ -37,7 +37,7 @@
   <%= u.text_field :phone %><br>
 
   <%= u.label 'Password' %>
-  <%= u.text_field :password %><br>
+  <%= u.password_field :password %><br>
 
   <%= u.submit  %>
 <% end %>

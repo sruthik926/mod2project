@@ -1,0 +1,9 @@
+<% @reviews.each do |rev| %>
+<label>Airline:</label>
+<%= rev.reservation.flight.airline%><br>
+<label>Rating:</label>
+<%= rev.rating %><br>
+<label>Content:</label>
+<%= rev.content %>
+<hr>
+<% end %>
