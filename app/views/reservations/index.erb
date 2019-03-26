@@ -2,19 +2,22 @@
 <h1>Your reservations:</h1>
 
 <% @reservations.each do |res| %>
-<label>Flight Name:</label>
-<%= res.flight.name %><br>
-<label>Airline Name:</label>
-<%= res.flight.airline  %><br>
-<label>Origin:</label>
-<%= res.flight.state %><br>
-<label>Destination:</label>
-<%= res.flight.destination_state %><br>
-<label>Departure Date:</label>
-<%= res.flight.date %><br>
-<label>Return Date:</label>
-<%= res.flight.return_date %>
+  <label>Flight Name:</label>
+  <%= res.flight.name %><br>
+  <label>Airline Name:</label>
+  <%= res.flight.airline  %><br>
+  <label>Origin:</label>
+  <%= res.flight.state %><br>
+  <label>Destination:</label>
+  <%= res.flight.destination_state %><br>
+  <label>Departure Date:</label>
+  <%= res.flight.date %><br>
+  <label>Return Date:</label>
+  <%= res.flight.return_date %>
+
+  <%= button_to "Write Review", new_review_path, :method => :get %>
 <hr>
+
 <% end %>
 
 <%= button_to "Back to Main Menu", user_path(current_user.id), :method => :get %>

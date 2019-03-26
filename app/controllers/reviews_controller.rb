@@ -1,13 +1,14 @@
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.reservation 
+    @reviews = Review.all
     render :index
   end
 
 
   def new
     @review = Review.new
+    @reservations = Reservation.all
     render :new
   end
 
@@ -15,6 +16,10 @@ class ReviewsController < ApplicationController
     @review = Review.create(review_params)
     if @review.valid?
       redirect_to reviews_path
+    else
+      flash[:error] = @review.errors.full_messages
+      redirect_to new_review_path
+    end
   end
 
   def show
@@ -28,7 +33,7 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:user_id, :flight_id, :rating, :content)
+    params.require(:review).permit(:reservation_id, :rating, :content)
   end
 
 end

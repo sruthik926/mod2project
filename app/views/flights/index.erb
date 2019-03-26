@@ -18,6 +18,7 @@
   <label>Destination:</label> -
   <%= flight.destination_state %>
   <%= button_to "Reserve this flight", flight_reservations_path(flight.id) %>
+  <hr>
   <% end %>
 
 <%= button_to "Search for flights", new_search_path, :method => :get %>
