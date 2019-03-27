@@ -17,10 +17,10 @@
 
   <div class="field">
     <%= f.label :destination %><br />
-    <%= f.select :destination_state, ["CA", "FL"] %>
+    <%= f.select :destination_state, ["CA", "FL", "MA"] %>
     <%# <%= f.collection_select(:destination, @returnflights, :id, :destination_state.to_s) %>
   </div>
-  
+
   <div class="field">
     <%= f.label :departure_date, "Date Range" %><br />
     <%= f.date_field :date %> -

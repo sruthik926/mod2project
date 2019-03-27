@@ -5,13 +5,14 @@
 <% end  %>
 
 
-<%= form_for @review do |f| %>
-  <%= f.label "Res_ID" %>
-  <%#= f.select :reservation_id, Reservation.flight.name, :selected => params[:id] %>
-  <%= f.collection_select(:reservation_id, Reservation.all, :id, :id) %>
+<%= form_for @review, url: flight_reviews_path do |f| %>
+  <%= f.label "Flight Name:" %>
+  <%= f.collection_select(:flight_id, @my_flights, :id, :name) %><br>
   <%= f.label "Rating" %>
   <%= f.select :rating, [ 1, 2, 3, 4, 5] %><br>
-  <%= f.label "Content" %>
-  <%= f.text_field :content %><br>
+  <%= f.label "Comment:" %><br>
+  <%= f.text_area :content %><br>
   <%= f.submit "Submit Review" %>
 <% end %>
+
+<%= button_to "Back to Main", user_path(current_user), :method => :get %>

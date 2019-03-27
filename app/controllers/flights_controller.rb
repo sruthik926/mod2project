@@ -1,7 +1,6 @@
 class FlightsController < ApplicationController
 
   def index
-
     @flights = Flight.find_flights(params[:flight][:state], params[:flight][:destination_state], params[:flight][:date],params[:flight][:return_date])
     render :index
   end

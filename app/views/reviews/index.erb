@@ -1,9 +1,11 @@
 <% @reviews.each do |rev| %>
 <label>Airline:</label>
-<%= rev.reservation.flight.airline%><br>
+<%= rev.flight.airline%><br>
 <label>Rating:</label>
 <%= rev.rating %><br>
 <label>Content:</label>
 <%= rev.content %>
 <hr>
 <% end %>
+
+<%= button_to "Main Menu", user_path(current_user), :method => :get %>

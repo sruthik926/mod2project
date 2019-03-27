@@ -10,9 +10,9 @@
   <label>Airline Name:</label>
   <%= flight.airline %><br>
   <label>Departure Date:</label>
-  <%= flight.date%><br>
+  <%= flight.date.strftime("%B %d, %Y")%><br>
   <label>Return Date:</label>
-  <%= flight.return_date %><br>
+  <%= flight.return_date.strftime("%B %d, %Y") %><br>
   <label>Origin:</label>
   <%= flight.state %><br>
   <label>Destination:</label> -

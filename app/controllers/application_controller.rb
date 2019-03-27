@@ -11,6 +11,7 @@ helper_method :current_user
   end
 
   def authorized
+    flash[:notice] = "SIGN IN!"
     redirect_to login_path unless logged_in?
   end
 

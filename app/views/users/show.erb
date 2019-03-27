@@ -1,14 +1,22 @@
-<h1> Welcome <%= @user.full_name %>!</h1>
+<h1> Welcome <%= current_user.full_name %>!</h1>
 
 
   <h3> USER MENU </h3>
-<% @my_reviews.each do |rev| %>
-  <%= rev.content %>
-<% end  %>
+  <label> Member Since: </label>
+  <%= current_user.member_since %> <br>
+
+  <label>Number of flights booked:</label>
+  <%= current_user.number_of_flights_booked %><br>
+
+
+  <label> Average spending on flights: </label>
+
+<%= current_user.avg_spending_on_flights %>
 
  <div> <%= button_to "Edit My Profile", edit_user_path(@user.id), :method => :get%></div>
  <div> <%= button_to "View My Reservations", reservations_path, :method => :get %></div>
  <div> <%= button_to "Book flights", new_search_path, :method => :get %></div>
+ <div> <%= button_to "See all reviews", reviews_path, :method => :get %></div>
  <% if current_user.email == @user.email %>
   <%= button_to 'Delete this Account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
