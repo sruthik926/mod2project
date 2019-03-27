@@ -24,11 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    all_reviews = Review.all
-    @my_reviews = all_reviews.select do |review|
-      review.reservation.user.id == current_user.id
-    end
-
+    @my_reviews = current_user.reviews
    render :show
   end
 

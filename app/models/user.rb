@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :reservations
   has_many :flights, through: :reservations
+  has_many :reviews
 
   validates :email, uniqueness: true
   validates :first_name,:last_name, :age, :email, :address_1, :city, :state, :zipcode, presence: true
@@ -12,5 +13,22 @@ class User < ApplicationRecord
      self.first_name + " " + self.last_name
   end
 
+  def number_of_flights_booked
+    self.reservations.length
+  end
+
+  def member_since
+    self.created_at.strftime("%B-%Y")
+  end
+
+  def avg_rating_per_airline
+
+  end
+
+  def avg_spending_on_flights
+    self.flights.map do |flight|
+      flight.price
+    end.inject{|sum, n| sum + n }/self.flights.length
+  end
 
 end

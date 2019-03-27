@@ -15,7 +15,11 @@
   <label>Return Date:</label>
   <%= res.flight.return_date %>
 
-  <%= button_to "Write Review", new_review_path, :method => :get %>
+  <% if res.flight.return_date > Date.today %>
+    <h4>You can't leave a review yet! Enjoy your trip first!</h4>
+  <% else %>
+    <%= button_to "Write Review", new_flight_review_path(res.flight.id), :method => :get %>
+  <% end %>
 <hr>
 
 <% end %>

@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   resources :reservations, only: :index
-  resources :reviews, only:[:index, :new, :create, :show, :edit, :update]
+  resources :reviews, only:[:index, :edit, :update]
+
   get '/flights/search', to: "flights#new_search", as: "new_search"
   resources :flights, only: [:index,:show] do
     resources :reservations, only:[:create, :show]
+    resources :reviews, only:[:index, :new, :create]
     end
   resources :users, only: [:new, :create, :show, :edit, :update, :delete]
-  # resources :searches, only: [:show, :new, :create]
 
   get '/', to: "users#welcome", as: "welcome"
 

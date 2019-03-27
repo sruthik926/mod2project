@@ -1,6 +1,7 @@
 class Flight < ApplicationRecord
   has_many :reservations
   has_many :users, through: :reservations
+  has_many :reviews
 
   validates :state, :destination_state, :date, :return_date, presence: true
 
@@ -12,6 +13,14 @@ class Flight < ApplicationRecord
     flights = flights.where("date like ?", date)
     flights = flights.where("return_date like ?", return_date)
     flights
+  end
+
+  def self.status
+    if return_date > Date.today
+      false
+    else
+      true
+    end
   end
 
 end
